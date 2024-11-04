@@ -1,0 +1,183 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Sensor Bridge</title>
+
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/slick.css"/>
+
+        <link href="{% static 'css/tooplate-little-fashion.css' %}" rel="stylesheet">
+<!--
+
+Tooplate 2127 Little Fashion
+
+https://www.tooplate.com/view/2127-little-fashion
+
+-->
+    </head>
+    
+    <body>
+
+    
+        <main>
+
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="http://127.0.0.1:8000/index1">
+                    <strong><span>Sensor </span> Bridge</strong>
+                </a>
+                <div class="container" style="max-width: 100%;">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    
+
+                    <div class="d-lg-none">
+                        <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
+
+                        <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            {% if request.session.admin %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="http://127.0.0.1:8000/index1">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_students_admin">Manage Students</a>
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/register_faculty">Add Faculty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/assign">Assign Student</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/admin_viewclass">Classes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/course">Add course</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_course">View course</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/add_stdy_mtr">Add Study Materials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/admin_viewleave">Leave Applications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/viewpayments">Course Payments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/logout">Logout</a>
+                            </li>
+                            {% elif request.session.sid %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="http://127.0.0.1:8000/index1">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/stud_profile">Profile</a>
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/viewclass">View Class</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/apply_leave">Apply Leave</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_leave_status">View Leave Status</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_assign_course">View Course</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_payments">View Payments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_stdy_mtr">Study Materials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/chatuser">Chat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/logout">Logout</a>
+                            </li>
+                            {% elif request.session.fid %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="http://127.0.0.1:8000/index1">Home</a>
+                            </li>
+
+                           
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/profile">Profile</a>
+                            </li>
+
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/class_schedule">Class Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/my_class_schedule">My Class Schedule</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/leave_request">Leave Requests</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_mystudents">My Students</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/view_stdy_mtr_fclty">View Study Materials</a>
+                            </li>
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/logout">Logout</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="http://127.0.0.1:8000/index1">Home</a>
+                            </li>
+
+                           
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/register">Register</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://127.0.0.1:8000/login">Login</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+
+                        <!-- <div class="d-none d-lg-block">
+                            <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
+
+                            <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                        </div> -->
+                    </div>
+                </div>
+            </nav>

@@ -1,0 +1,108 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+    th {
+        background-color: #ff4400;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    /* Targeting the table */
+.small-table {
+    width: 50%; /* Adjust the width as needed */
+    font-size: 13px; /* Smaller font size */
+}
+
+/* Targeting table headers and cells */
+.small-table th,
+.small-table td {
+    padding: 8px 12px; /* Reduced padding */
+    border: 1px solid #ddd; /* Optional: styling the border */
+}
+
+</style>
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+        <center>
+            <!-- Assuming you have a context variable 'students' containing the data -->
+            <table border="1" class="small-table">
+                <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Place</th>
+            <th>Address</th>
+            <th>Disability Status</th>
+            <th>Disability Certificate</th>
+            <th colspan="2">Status</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in result %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.phone }}</td>
+                <td>{{ student.city }}</td>
+                <td>{{ student.place }}</td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.disability_status }}</td>
+                <td>
+                    {% if student.disability_certificate %}
+    <a href="{{ student.disability_certificate.url }}" download target="_blank">View Certificate</a>
+{% else %}
+    No Certificate
+{% endif %}
+
+               
+                {% if student.status == 'pending' %}
+                <td><a href="approve_stud/{{student.id}}" class="btn btn-success">Approve</a></td>
+                <td><a href="reject_stud/{{student.id}}" class="btn btn-danger">Reject</a></td>
+                {% elif student.status == 'approved' %}
+                <td colspan="2" style="color: green;"> Student Approved </td>
+                  {% elif student.status == 'rejected' %}
+                  <td colspan="2" style="color: rgb(255, 0, 0);"> Student Rejected </td>
+                  {% endif %}
+                  
+                
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}

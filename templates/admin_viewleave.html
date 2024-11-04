@@ -1,0 +1,72 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+    th {
+        background-color: #ff4400;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+        <center>
+            <!-- Assuming you have a context variable 'students' containing the data -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>reason</th>
+ 
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in result %}
+            <tr>
+                <td>{{ student.date }}</td>
+                <td>{{ student.reason }}</td>
+
+                {% if student.status == 'approved' %}
+                <td  style="color: green;"> Leave Approved </td>
+                  {% elif student.status == 'rejected' %}
+                  <td style="color: rgb(255, 0, 0);"> Leave Rejected </td>
+                  {% elif student.status == 'pending' %}
+                  <td  style="color: rgb(0, 0, 255);"> Pending </td>
+                  {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}

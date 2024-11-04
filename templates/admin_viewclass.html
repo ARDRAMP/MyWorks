@@ -1,0 +1,75 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+    th {
+        background-color: #ff4400;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+        <center>
+            <!-- Assuming you have a context variable 'students' containing the data -->
+<table border="1">
+    <thead>
+        <tr>
+            <tr>
+                <th>Faculty Name</th>
+                <th>Class Type</th>
+                <th>Date & Time</th>
+                <th>Link</th>
+                <th>Host key</th>
+                <th>Message</th>
+             
+            </tr>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in result %}
+        <tr>
+            <td>{{ student.fid }}</td>
+            <td>{{ student.typee }}</td>
+            <td>{{ student.date }}</td>
+            <td><a href="https://{{student.link}}" target="_blank">{{student.link}}</a></td>
+            <td>{{ student.host_key }}</td>
+            <td>{{ student.message }}</td>
+           
+          
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}

@@ -1,0 +1,273 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+            <center>
+            <div align="center" class="col-lg-6 col-12">
+                <h2 class="mb-4">Student<span>Register</span></h2>
+
+                <form class="contact-form me-lg-5 pe-lg-3" action="addstudent" method="post" role="form"enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-floating">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Full name" 
+                        pattern="[A-Za-z]+(([',. -][A-Za-z ])?[A-Za-z]*)*" required title="Please enter a valid full name.">
+                        <label for="name">Full name</label>
+                        <div id="name-validation-message" style="color: red;"></div>
+                    </div>
+                    
+
+                    <div class="form-floating my-4">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required title="Please enter a valid email address.">
+                        <label for="email">Email address</label>
+                        <div id="email-validation-message" style="color: red;"></div>
+                    </div>
+                    
+
+                    
+                    <div class="form-floating my-4">
+                        <input type="number" name="phone" pattern="[0-9]{10}" title='Enter 10 digits'  id="number"class="form-control" placeholder="phone" required>
+
+                        <label for="text">Phone</label>
+                    </div>
+
+                    
+                    
+                    <div class="form-floating my-4">
+                        <input type="text" name="city" id="subject"class="form-control" placeholder="City" required>
+
+                        <label for="subject">City</label>
+                        <div id="city-validation-message" style="color: red;"></div>
+
+                    </div>
+
+
+                    <div class="form-floating my-4">
+                        <input type="text" name="place" id="place" class="form-control" placeholder="Place" required>
+                        <label for="place">Place</label>
+                        <div id="place-validation-message" style="color: red;"></div>
+                    </div>
+                    
+
+
+                    <div class="form-floating my-4">
+                        <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+                        <label for="address">Address</label>
+                        <div id="address-validation-message" style="color: red;"></div>
+                    </div>
+                    
+
+                    
+                    <div class="form-floating my-4">
+                        <select id="disability-status" class="form-control" name="disability_status" required>
+                           
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                        <label for="disability-status">Disability Status</label>
+                    </div>
+
+                    <!-- Initially hidden sections -->
+                    <div id="conditional-sections" style="display: none;">
+                        <!-- Student Type Field -->
+                        <div class="form-floating my-4">
+                            <select id="st_type" class="form-control" name="st_type" required>
+                                <option value="">Select Student Type</option>
+                                <option value="Deaf">Deaf</option>
+                                <option value="Dumb">Dumb</option>
+                      
+                                {% comment %} <option value="Blind">Blind</option> {% endcomment %}
+                            </select>
+                            <label for="st_type">Student Type</label>
+                        </div>
+
+                        <!-- Disability Certificate Upload Field -->
+                        <div class="form-floating my-4">
+                            <input type="file" name="certification" id="certification" class="form-control form-control-lg">
+                            <label for="certification">Disability Certificate</label>
+                        </div>
+                    </div>
+
+                    
+                        <div class="form-floating my-4">
+                            <input type="password" name="password" id="password"class="form-control" placeholder="Password" required>
+    
+                        <label for="subject">Password</label>
+                        <div id="password-validation-message" style="color: red;"></div>
+
+                        <!-- Heading for the certification upload field -->
+            
+                        <script>
+                            document.getElementById('disability-status').addEventListener('change', function() {
+                                var conditionalSections = document.getElementById('conditional-sections');
+                                var certificationInput = document.getElementById('certification');
+                                var studentTypeSelect = document.getElementById('st_type');
+
+                                // Display or hide the conditional sections based on selection
+                                if (this.value === 'yes') {
+                                    conditionalSections.style.display = 'block';
+                                    certificationInput.setAttribute('required', true);
+                                    studentTypeSelect.setAttribute('required', true);
+                                } else {
+                                    conditionalSections.style.display = 'none';
+                                    certificationInput.removeAttribute('required');
+                                    studentTypeSelect.removeAttribute('required');
+                                }
+                            });
+
+
+                            function validatePassword() {
+                                var passwordInput = document.getElementById('password');
+                                var passwordValidationMessage = document.getElementById('password-validation-message');
+                        
+                                var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+                        
+                                if (!passwordRegex.test(passwordInput.value)) {
+                                    passwordValidationMessage.textContent = "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.";
+                                    passwordInput.setCustomValidity("Invalid password");
+                                } else {
+                                    passwordValidationMessage.textContent = "";
+                                    passwordInput.setCustomValidity("");
+                                }
+                            }
+                        
+                            function validateName() {
+                                var nameInput = document.getElementById('name');
+                                var nameValidationMessage = document.getElementById('name-validation-message');
+                        
+                                // Regular expression for validating the name
+                                // Adjust the pattern as needed to match your criteria
+                                var nameRegex = /^[A-Za-z]+(([',. -][A-Za-z ])?[A-Za-z]*)*$/;
+                        
+                                if (!nameRegex.test(nameInput.value)) {
+                                    nameValidationMessage.textContent = "Please enter a valid full name (e.g., John Doe).";
+                                    nameInput.setCustomValidity("Invalid full name");
+                                } else {
+                                    nameValidationMessage.textContent = "";
+                                    nameInput.setCustomValidity("");
+                                }
+                            }
+                        
+                            document.getElementById('name').addEventListener('input', validateName);
+                            function validateEmail() {
+                                var emailInput = document.getElementById('email');
+                                var emailValidationMessage = document.getElementById('email-validation-message');
+                            
+                                // Regular expression for validating the email address
+                                var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                            
+                                if (!emailRegex.test(emailInput.value)) {
+                                    emailValidationMessage.textContent = "Please enter a valid email address.";
+                                    emailInput.setCustomValidity("Invalid email address");
+                                } else {
+                                    emailValidationMessage.textContent = "";
+                                    emailInput.setCustomValidity("");
+                                }
+                            }
+                            
+                            document.getElementById('email').addEventListener('input', validateEmail);
+                            function validateCity() {
+                                var cityInput = document.getElementById('subject'); // Ensure this ID matches your HTML
+                                var cityValidationMessage = document.createElement('div'); // Dynamically creating a message element
+                                cityValidationMessage.setAttribute('id', 'city-validation-message'); // Setting an ID for the message element
+                                var cityRegex = /^[A-Za-z]+(?:[\s-][A-Za-z]+)*$/; // Adjust regex as necessary
+                            
+                                // Append the validation message div after the city input element if not already appended
+                                if (!document.getElementById('city-validation-message')) {
+                                    cityInput.parentNode.insertBefore(cityValidationMessage, cityInput.nextSibling);
+                                } else {
+                                    cityValidationMessage = document.getElementById('city-validation-message'); // Use existing message div if it exists
+                                }
+                            
+                                if (!cityRegex.test(cityInput.value)) {
+                                    cityValidationMessage.textContent = "Please enter a valid city name (e.g., Thrissur).";
+                                    cityInput.setCustomValidity("Invalid city name");
+                                    cityInput.reportValidity(); // Shows the validation message
+                                } else {
+                                    cityValidationMessage.textContent = "";
+                                    cityInput.setCustomValidity("");
+                                }
+                            }
+                            
+                            // Attach the validation function to the city input field for the 'input' event
+                            document.getElementById('subject').addEventListener('input', validateCity);
+                            function validatePlace() {
+                                var placeInput = document.getElementById('place');
+                                var placeValidationMessage = document.getElementById('place-validation-message');
+                            
+                                // Adjust the pattern below as needed to match your criteria for a valid place name.
+                                // This example assumes place names can be similar in format to person names, but you might want a different pattern.
+                                var placeRegex = /^[A-Za-z]+(([',. -][A-Za-z ])?[A-Za-z]*)*$/;
+                            
+                                if (!placeRegex.test(placeInput.value)) {
+                                    placeValidationMessage.textContent = "Please enter a valid place (e.g., Guruvayoor).";
+                                    placeInput.setCustomValidity("Invalid place name");
+                                } else {
+                                    placeValidationMessage.textContent = "";
+                                    placeInput.setCustomValidity("");
+                                }
+                            }
+                            
+                            // Attach the validation function to the place input field. Here, it triggers on input, but you can adjust as necessary.
+                            document.getElementById('place').addEventListener('input', validatePlace);
+                            function validateAddress() {
+                                var addressInput = document.getElementById('address');
+                                var addressValidationMessage = document.getElementById('address-validation-message');
+                            
+                                // Regular expression for validating the address. Adjust as needed.
+                                var addressRegex = /^[0-9A-Za-z\s,'-.#]+$/;
+                            
+                                if (!addressRegex.test(addressInput.value)) {
+                                    addressValidationMessage.textContent = "Please enter a valid address.";
+                                    addressInput.setCustomValidity("Invalid address");
+                                } else {
+                                    addressValidationMessage.textContent = "";
+                                    addressInput.setCustomValidity("");
+                                }
+                            
+                                // Explicitly report the validity.
+                                addressInput.reportValidity();
+                            }
+                            
+                            // Optionally, add event listener for real-time validation or button click
+                            document.getElementById('address').addEventListener('input', validateAddress);
+                            
+                            // If using a button for validation instead of real-time validation:
+                            document.getElementById('validateAddressButton').addEventListener('click', function(event) {
+                                validateAddress();
+                                // Prevent form submission if the address is invalid.
+                                if (!document.getElementById('address').checkValidity()) {
+                                    event.preventDefault();
+                                }
+                            });
+                            
+                            
+
+
+                            
+                            
+                        </script>
+                      
+                    </div>
+
+                   
+
+                    <div class="col-lg-5 col-6">
+                        <button type="submit" class="form-control">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}

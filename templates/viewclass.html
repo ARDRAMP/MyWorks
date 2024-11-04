@@ -1,0 +1,120 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+    th {
+        background-color: #ff4400;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    /* Existing styles */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+    th {
+        background-color: #ff4400;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Updated button styles */
+    .self-learning-btn {
+        display: inline-block; /* Allows the element to be sized according to its content */
+        margin: 20px 0; /* Margin to the top and bottom */
+        padding: 10px 20px; /* Padding inside the button */
+        background-color: #007bff; /* Button color */
+        color: white; /* Text color */
+        border: none; /* No border */
+        cursor: pointer; /* Cursor indicates clickable item */
+        text-decoration: none; /* No underlining */
+        border-radius: 5px; /* Rounded corners */
+        font-size: 16px; /* Text size */
+        transition: background-color 0.3s ease; /* Smooth background color transition */
+    }
+
+    .self-learning-btn:hover, .self-learning-btn:focus {
+        background-color: #0056b3; /* Darker shade for hover and focus */
+        color: white; /* Keeping text color white for contrast */
+        text-decoration: none; /* Prevents any text decoration on hover/focus */
+        outline: none; /* Removes outline on focus for browsers that apply it */
+    }
+
+</style>
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+        <center>
+    <h1>     </h1>   <!-- Assuming you have a context variable 'students' containing the data -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Faculty Name</th>
+            <th>Class Type</th>
+            <th>Date & Time</th>
+            <th>Link</th>
+            <th>Host key</th>
+            <th>Message</th>
+            
+         
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in result %}
+            <tr>
+                <td>{{ student.fid }}</td>
+                <td>{{ student.typee }}</td>
+                <td>{{ student.date }}</td>
+                <td><a href="https://{{student.link}}" target="_blank">{{student.link}}</a></td>
+                <td>{{ student.host_key }}</td>
+                
+                <td>{{ student.message }}</td>
+               
+              
+            </tr>
+        {% endfor %}
+    </tbody>
+    
+   
+    </table><br><br><br><br>
+    <a href="{% url 'signlanguage' %}" class="self-learning-btn">Basics of Sign Language: A Self-Guided Journey</a>
+
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+    
+{% include 'footer.html' %}

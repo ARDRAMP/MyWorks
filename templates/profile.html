@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include your meta tags, title, and stylesheets here -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact {
+            padding: 150px 0; /* Increase the top and bottom padding */
+            min-height: 100vh; /* Set a minimum height to fill the screen */
+        }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        .team {
+            margin-bottom: 50px; /* Adjust the bottom margin as needed */
+        }
+
+        .team-thumb img {
+            max-width: 80px; /* Adjust the max-width to decrease the size */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .team-info {
+            text-align: center;
+        }
+
+        .team-info h2 {
+            margin-bottom: 10px;
+        }
+
+        .personal-info h5 {
+            margin-bottom: 20px;
+        }
+
+        .personal-info p {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+
+
+{% include 'header.html' %}
+
+{% if message %}
+    <script>
+        alert('{{message}}');
+    </script>
+{% endif %}
+
+<section class="contact section-padding">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <section class="team section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mb-5">My <span>Profile</span></h2>
+                            </div>
+
+                            <div class="col-lg-12 mb-12 col-12">
+                                <div class="team-thumb">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-6 col-12">
+                                            <div class="team-info">
+                                                <img src="{% static 'images/img.png' %}" alt="">
+                                                <h2 class="mb-0">{{result.name}}</h2>
+                                                <br><a href="profile_up" class="btn btn-primary">Edit</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-6 col-12 personal-info">
+                                            <h5>Personal Information</h5>
+                                            <p>
+                                                <strong class="text-muted">Email: {{result.email}}</strong><br>
+                                                <strong class="text-muted">Phone: {{result.phone}}</strong><br>
+                                                <strong class="text-muted">Address: {{result.address}}</strong><br>
+                                                <strong class="text-muted">Course: {{result.course}}</strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html' %}
+
+<!-- Include your scripts and closing tags here -->
+</body>
+</html>

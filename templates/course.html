@@ -1,0 +1,73 @@
+        {% load static %}
+
+        {% include 'header.html' %}
+
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+        <section class="contact section-padding">
+            <div   class="container">
+                <div class="row">
+                    <center>
+                    <div align="center" class="col-lg-6 col-12">
+
+                        <h2 class="mb-4">Add<span>Course</span></h2>
+
+                        <form class="contact-form me-lg-5 pe-lg-3" action="addcourse" method="post" role="form">
+                            {% csrf_token %}
+
+                            <div class="form-floating">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+
+                                <label for="name">Course Name</label>
+                            </div><br>
+                            <div class="form-floating">
+                                <input type="text" name="amount" id="amount" class="form-control" placeholder="amount" required>
+
+                                <label for="amount">Amount</label>
+                            </div><br>
+
+                            <div class="form-floating mb-4">
+                                <textarea id="message" name="details" class="form-control" placeholder="Leave a comment here" required style="height: 160px"></textarea>
+                            
+                                <label for="message">Course Details</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="date" name="startdate"  id="date_picker"  class="form-control" placeholder="Full name" required>
+
+                                <label for="name">Start Date</label>
+                            </div>
+                            <script language="javascript">
+                                var today = new Date();
+                                var dd = String(today.getDate()).padStart(2, '0');
+                                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                var yyyy = today.getFullYear();
+                        
+                                today = yyyy + '-' + mm + '-' + dd;
+                                $('#date_picker').attr('min',today);
+                            </script>
+                            <br>
+                        <div class="form-floating">
+                            <input type="date" name="enddate"  id="date_picker"  class="form-control" placeholder="Full name" required>
+
+                            <label for="name">End Date</label>
+                        </div>
+                        
+                            
+        <br>
+                        
+
+                            <div class="col-lg-5 col-6">
+                                <button type="submit" class="form-control">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </center>
+                    
+
+                </div>
+            </div>
+        </section>
+        </main>
+
+        {% include 'footer.html' %}

@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Course Progress</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+        }
+        .card-header {
+            background: linear-gradient(60deg, #ffa726, #fb8c00);
+            color: #fff;
+            font-size: 24px;
+        }
+        .card-body {
+            padding: 20px;
+            background-color: #fff;
+        }
+        .progress {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+        }
+        .progress-bar {
+            background-color: #fb8c00;
+            transition: width 1s ease-in-out;
+        }
+        .progress-description {
+            text-align: center;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .card-header, .card-body {
+                padding: 15px;
+            }
+            .card-header {
+                font-size: 20px;
+            }
+        }
+        .centered-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .btn-up {
+            margin-bottom: 500px; /* Adjust this value to move the button up */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card" aria-live="polite" aria-atomic="true">
+        <div class="card-header" id="courseTitle">Your Progress</div>
+        <div class="card-body">
+            <p><strong>Description:</strong> This course is designed to provide learners with the knowledge and skills necessary to advance their professional or academic interests. By completing this course, learners will have gained valuable insights into the subject matter, contributing to their personal and professional development.</p>
+            <div class="progress mb-3" aria-describedby="progressDescription">
+                <div class="progress-bar" role="progressbar" id="progressBar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+            <p id="progressDescription" class="progress-description">You have just started. Good luck on your journey!</p>
+        </div>
+    </div>
+</div>
+<div class="centered-container">
+    <a href="{% url 'certificate' %}" class="btn btn-primary btn-up">Certificate</a>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let progress = 0;
+    const totalModules = 10;
+
+    const progressBar = document.getElementById('progressBar');
+    const progressDescription = document.getElementById('progressDescription');
+
+    function updateProgress(newProgress) {
+        progress = newProgress;
+        const progressPercentage = (progress / totalModules) * 100;
+        progressBar.style.width = progressPercentage + '%';
+        progressBar.setAttribute('aria-valuenow', progress);
+        progressBar.textContent = Math.round(progressPercentage) + '%';
+        progressDescription.textContent = `Completed ${progress} out of ${totalModules} modules. Keep up the good work!`;
+    }
+    
+    // Simulate progress update
+    // updateProgress(1);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% load static %}
+{% include 'header.html' %}
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+            <center>
+            <div align="center" class="col-lg-6 col-12">
+            <a href="view_faculty_admin"  class="btn btn-primary">View All</a>
+             <h2 class="mb-4">Profile<span>Update</span></h2>
+             <form class="contact-form me-lg-5 pe-lg-3" action="addfaculty_up/{{result.id}}" method="post" role="form">
+                    {% csrf_token %}
+                    <div class="form-floating">
+                        <input type="text" name="name" id="name" class="form-control" value="{{result.name}}" placeholder="Full name" required>
+                        <label for="name">Full name</label>
+                    </div>
+
+                    <div class="form-floating my-4">
+                        <input type="email" name="email" id="email" value="{{result.email}}" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+
+                        <label for="email">Email address</label>
+                    </div>
+                    
+                    <div class="form-floating my-4">
+                        <input type="text" name="phone" id="subject"class="form-control" value="{{result.phone}}" pattern="[0-9]{10}" title='Enter 10 digits'  placeholder="Phone" required>
+
+                        <label for="subject">Phone</label>
+                    </div>
+                  
+                    <div class="form-floating my-4">
+                        <input type="text" name="course" id="subject"class="form-control" value="{{result.course}}" placeholder="Course" required>
+
+                        <label for="subject">Course</label>
+                    </div>
+                    <div class="form-floating my-4">
+                        <input type="text" name="address" id="subject"class="form-control" value="{{result.address}}"  placeholder="Address" required>
+                        <label for="subject">Address</label>
+                    </div>
+                    <div class="form-floating my-4">
+                        <input type="text" name="password" id="subject"class="form-control" value="{{result.password}}"  placeholder="Password" required>
+                        <label for="subject">Password</label>
+                    </div>
+                    <div class="col-lg-5 col-6">
+                        <button type="submit" class="form-control">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}

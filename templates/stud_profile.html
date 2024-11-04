@@ -1,0 +1,72 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+{% if message %}
+<script>
+  alert('{{message}}');
+</script>
+{% endif %}
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+            <center>
+                <section class="team section-padding">
+                    <div class="container">
+                        <div class="row">
+    
+                            <div class="col-12">
+                                <h2 class="mb-5">My <span>Profile</span></h2>
+                            </div>
+    
+                          <center>
+    
+                            <div class="col-lg-6 mb-6 col-12">
+                                <div class="team-thumb  ">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-6 col-12">
+                                            <div class="team-info">
+                                                <img style="height: 100px; width: 100px;" src="{% static 'images/img.png' %}" alt="">
+                                                <h2 class="mb-0">{{result.name}}</h2>
+                                               
+            
+                                                <!-- Button trigger modal -->
+                                                <br><a href="stud_profile_up" class="btn btn-primary">Edit</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-6 col-12">
+                                            <h5>Personal Information</h5>
+                                            <p align="justify">
+                                                <strong class=""><b>Email :</b>{{result.email}}</strong><br>
+                                                <strong class=""><b>Phone :</b>{{result.phone}}</strong><br>
+                                                <strong class=""><b>Address :</b>{{result.address}}</strong><br>
+                                                <strong class=""><b>City :</b>{{result.city}}</strong><br>
+                                                <strong class=""><b>Place :</b>{{result.place}}</strong><br>
+                                                <strong class=""><b>Student Type :</b>{{result.st_type}}</strong>
+                                            </p>
+                                                <!-- Button trigger modal -->
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            
+                        </center>
+                            
+    
+                        </div>
+                    </div>
+                </section>
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}

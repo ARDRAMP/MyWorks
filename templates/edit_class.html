@@ -1,0 +1,91 @@
+{% load static %}
+
+{% include 'header.html' %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+            <center>
+            <div align="center" class="col-lg-6 col-12">
+                <h2 class="mb-4">Class <span>Schedule</span></h2>
+
+                <form class="contact-form me-lg-5 pe-lg-3" action="edit_class_up/{{result.id}}" method="post" role="form">
+                    {% csrf_token %}
+
+                   
+                  
+                    <div class="form-floating">
+                        <input type="text" name="typee" value="{{result.typee}}" id="name" class="form-control" placeholder="Type of class" required>
+
+                        <label for="name">Type of Class</label>
+                    </div><br>
+                    
+                    <div class="form-floating">
+                        <input type="text" name="date" value="{{result.date}}" id="name" class="form-control" placeholder="date" required>
+
+                        <label for="name">Date</label>
+                    </div><br>
+                   
+                    
+<br>
+                    <div class="form-floating">
+                        <input type="text" name="link" value="{{result.link}}" id="name" class="form-control" placeholder="Class Meet Link" required>
+
+                        <label for="name">Link</label>
+                    </div><br>
+                    <div class="form-floating">
+                        <input type="text" name="host_key" value="{{result.host_key}}" id="name" class="form-control" placeholder="Host Key" required>
+
+                        <label for="name">Host Key</label>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input type="password" name="password" value="{{result.password}}" id="password" class="form-control" placeholder="Password" required>
+
+                        <label for="name">Password</label>
+                        <div id="password-validation-message" style="color: red;"></div>
+
+                        <script>
+                            function validatePassword() {
+                                var passwordInput = document.getElementById('password');
+                                var passwordValidationMessage = document.getElementById('password-validation-message');
+                        
+                                var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+                        
+                                if (!passwordRegex.test(passwordInput.value)) {
+                                    passwordValidationMessage.textContent = "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.";
+                                    passwordInput.setCustomValidity("Invalid password");
+                                } else {
+                                    passwordValidationMessage.textContent = "";
+                                    passwordInput.setCustomValidity("");
+                                }
+                            }
+                        
+                            document.getElementById('password').addEventListener('input', validatePassword);
+                        </script>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <input type="text" name="message" value="{{result.message}}" id="name" class="form-control" placeholder="Message" required>
+
+                        <label for="name">Message</label>
+                    </div>
+
+                    <div class="col-lg-5 col-6">
+                        <button type="submit" class="form-control">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}

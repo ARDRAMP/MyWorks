@@ -1,0 +1,107 @@
+{% load static %}
+
+{% include 'header.html' %}
+{% if message %}
+<script>
+  alert('{{message}}');
+</script>
+{% endif %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+    }
+
+    th {
+        background-color: #ff4400;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+            <section class="slick-slideshow">   
+                <div class="slick-custom">
+                    <img src="{% static 'images/slideshow/medium-shot-business-women-high-five.jpeg' %}" class="img-fluid" alt="">
+
+                    <div class="slick-bottom">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-10">
+                                    <h1 class="slick-title">Sensor Bridge</h1>
+
+                                    <p class="lead text-white mt-lg-3 mb-lg-5">An automated
+                                        system that provides support services for deaf and dumb students to attend online
+                                        classes</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </section>
+            {% if request.session.admin %}
+            {% elif request.session.sid %}
+            {% elif request.session.fid %}
+            
+            {% else %}
+
+            <section class="contact section-padding">
+                <div   class="container">
+        <center><h2>Course Details</h2></center>  
+
+                    <div class="row">
+                    <center>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Details</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Payment</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assigned_courses in assigned_courses %}
+                        <tr>
+                            <td>{{ assigned_courses.name }}</td>
+                            <td>{{ assigned_courses.details }}</td>
+                            <td>{{ assigned_courses.startdate }}</td>
+                            <td>{{ assigned_courses.enddate }}</td>
+                            <td>{{ assigned_courses.amount }}</td>
+                            <td><a href="register" class="btn btn-success">Register for Enroll</a></td>
+            
+                          
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            
+                    </center>
+                        
+            
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+         
+
+        </main>
+
+        {% include 'footer.html' %}
